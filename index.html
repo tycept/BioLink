@@ -4,6 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tyce's Bio Link</title>
+
+  <!-- Meta for previews and trust -->
+  <meta name="description" content="Tyce's Bio — Connect with me on Facebook, WhatsApp, or Telegram!">
+  <meta property="og:title" content="Tyce's Bio Link">
+  <meta property="og:description" content="Quick links to my socials, sounds & style.">
+  <meta property="og:image" content="https://tycept.github.io/BioLink/profile.png">
+  <meta property="og:url" content="https://tycept.github.io/BioLink/">
+  <meta name="theme-color" content="#02CDAD">
+
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <!-- Font Awesome -->
@@ -184,7 +193,7 @@
   <a href="https://t.me/Tyce01" target="_blank"><i class="fab fa-telegram-plane"></i></a>
 </footer>
 
-<!-- Audio Files for Click & Swoosh Sounds -->
+<!-- Audio Files -->
 <audio id="click-sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 <audio id="swoosh-sound" src="https://www.soundjay.com/button/swoosh-01.wav" preload="auto"></audio>
 
@@ -193,13 +202,16 @@
 <script>
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
-    loader.style.display = "none"; // Hide the loader immediately
-    // Apply zoom-in effect right after page load
+    loader.style.display = "none";
+
     document.querySelectorAll('.profile-pic, h1, p, .btn').forEach(element => {
       element.classList.add('animate__animated', 'animate__zoomIn');
     });
-    // Play swoosh sound for page load
-    document.getElementById('swoosh-sound').play();
+
+    // Wait for interaction before playing swoosh
+    document.body.addEventListener('click', () => {
+      document.getElementById('swoosh-sound').play().catch(() => {});
+    }, { once: true });
   });
 
   function showAlert(name) {
@@ -214,7 +226,6 @@
   }
 
   function playClickSound() {
-    // Play click sound when link button is clicked
     document.getElementById('click-sound').play();
   }
 </script>
